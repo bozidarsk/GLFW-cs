@@ -7,7 +7,7 @@ public struct Color
 {
 	public float r, g, b, a;
 
-	public static readonly Color Black = new Color(0f, 0f, 0f, 0f);
+	public static readonly Color Black = new Color(0f, 0f, 0f, 1f);
 	public static readonly Color White = new Color(1f, 1f, 1f, 1f);
 
 	public static Color operator * (Color a, float x) => new Color(a.r * x, a.g * x, a.b * x, a.a * x);
