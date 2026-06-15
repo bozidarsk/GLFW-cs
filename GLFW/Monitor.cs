@@ -8,13 +8,13 @@ using static GLFW.Constants;
 
 namespace GLFW;
 
-public readonly struct Monitor 
+public readonly struct Monitor
 {
 	private readonly nint handle;
 
-	public unsafe string Name 
+	public unsafe string Name
 	{
-		get 
+		get
 		{
 			return new(glfwGetMonitorName(this));
 
@@ -22,9 +22,9 @@ public readonly struct Monitor
 		}
 	}
 
-	public (int, int) Position 
+	public (int, int) Position
 	{
-		get 
+		get
 		{
 			glfwGetMonitorPos(this, out int x, out int y);
 			return (x, y);
@@ -33,9 +33,9 @@ public readonly struct Monitor
 		}
 	}
 
-	public (int, int) PhysicalSize 
+	public (int, int) PhysicalSize
 	{
-		get 
+		get
 		{
 			glfwGetMonitorPhysicalSize(this, out int x, out int y);
 			return (x, y);
@@ -44,9 +44,9 @@ public readonly struct Monitor
 		}
 	}
 
-	public (float, float) ContentSize 
+	public (float, float) ContentSize
 	{
-		get 
+		get
 		{
 			glfwGetMonitorContentSize(this, out float x, out float y);
 			return (x, y);
@@ -55,9 +55,9 @@ public readonly struct Monitor
 		}
 	}
 
-	public (int, int, int, int) WorkArea 
+	public (int, int, int, int) WorkArea
 	{
-		get 
+		get
 		{
 			glfwGetMonitorWorkarea(this, out int x, out int y, out int width, out int height);
 			return (x, y, width, height);
@@ -66,15 +66,15 @@ public readonly struct Monitor
 		}
 	}
 
-	public nint UserPointer 
+	public nint UserPointer
 	{
-		set 
+		set
 		{
 			glfwSetMonitorUserPointer(this, value);
 
 			[DllImport(GLFW_LIB)] static extern void glfwSetMonitorUserPointer(Monitor monitor, nint pointer);
 		}
-		get 
+		get
 		{
 			return glfwGetMonitorUserPointer(this);
 
@@ -82,9 +82,9 @@ public readonly struct Monitor
 		}
 	}
 
-	public static Monitor PrimaryMonitor 
+	public static Monitor PrimaryMonitor
 	{
-		get 
+		get
 		{
 			return glfwGetPrimaryMonitor();
 
@@ -92,9 +92,9 @@ public readonly struct Monitor
 		}
 	}
 
-	public static unsafe Monitor[] AllMonitors 
+	public static unsafe Monitor[] AllMonitors
 	{
-		get 
+		get
 		{
 			Monitor* src = glfwGetMonitors(out int count);
 			var dest = new Monitor[count];
@@ -108,8 +108,8 @@ public readonly struct Monitor
 		}
 	}
 
-	public static bool operator == (Monitor a, Monitor b) => a.handle == b.handle;
-	public static bool operator != (Monitor a, Monitor b) => a.handle != b.handle;
+	public static bool operator ==(Monitor a, Monitor b) => a.handle == b.handle;
+	public static bool operator !=(Monitor a, Monitor b) => a.handle != b.handle;
 	public override bool Equals(object? other) => (other is Monitor x) ? x.handle == handle : false;
 
 	public override string ToString() => this.Name;

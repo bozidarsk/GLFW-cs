@@ -5,23 +5,23 @@ using static GLFW.Constants;
 
 namespace GLFW;
 
-public static class Program 
+public static class Program
 {
 	private static unsafe ErrorCallback errorCallback = (code, message) => OnError?.Invoke(null, new(code, new string(message)));
 	public static event ErrorEventHandler? OnError;
 
-	public static Platform Platform 
+	public static Platform Platform
 	{
-		get 
+		get
 		{
 			return glfwGetPlatform();
 
 			[DllImport(GLFW_LIB)] static extern Platform glfwGetPlatform();
 		}
 	}
-	public static unsafe string Version 
+	public static unsafe string Version
 	{
-		get 
+		get
 		{
 			return new string(glfwGetVersionString());
 
@@ -29,9 +29,9 @@ public static class Program
 		}
 	}
 
-	public static unsafe string?[]? RequiredInstanceExtensions 
+	public static unsafe string?[]? RequiredInstanceExtensions
 	{
-		get 
+		get
 		{
 			var x = glfwGetRequiredInstanceExtensions(out uint count);
 
@@ -49,7 +49,7 @@ public static class Program
 		}
 	}
 
-	public static bool Initialize() 
+	public static bool Initialize()
 	{
 		bool result = glfwInit();
 

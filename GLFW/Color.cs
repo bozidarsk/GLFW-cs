@@ -3,21 +3,21 @@ using System.Runtime.InteropServices;
 namespace GLFW;
 
 [StructLayout(LayoutKind.Sequential)]
-public struct Color 
+public struct Color
 {
 	public float r, g, b, a;
 
 	public static readonly Color Black = new Color(0f, 0f, 0f, 1f);
 	public static readonly Color White = new Color(1f, 1f, 1f, 1f);
 
-	public static Color operator * (Color a, float x) => new Color(a.r * x, a.g * x, a.b * x, a.a * x);
-	public static Color operator / (Color a, float x) => new Color(a.r / x, a.g / x, a.b / x, a.a / x);
-	public static Color operator * (float x, Color a) => new Color(a.r * x, a.g * x, a.b * x, a.a * x);
-	public static Color operator / (float x, Color a) => new Color(a.r / x, a.g / x, a.b / x, a.a / x);
-	public static Color operator + (Color a, Color b) => new Color(a.r + b.r, a.g + b.g, a.b + b.b, a.a + b.a);
-	public static Color operator - (Color a, Color b) => new Color(a.r - b.r, a.g - b.g, a.b - b.b, a.a - b.a);
+	public static Color operator *(Color a, float x) => new Color(a.r * x, a.g * x, a.b * x, a.a * x);
+	public static Color operator /(Color a, float x) => new Color(a.r / x, a.g / x, a.b / x, a.a / x);
+	public static Color operator *(float x, Color a) => new Color(a.r * x, a.g * x, a.b * x, a.a * x);
+	public static Color operator /(float x, Color a) => new Color(a.r / x, a.g / x, a.b / x, a.a / x);
+	public static Color operator +(Color a, Color b) => new Color(a.r + b.r, a.g + b.g, a.b + b.b, a.a + b.a);
+	public static Color operator -(Color a, Color b) => new Color(a.r - b.r, a.g - b.g, a.b - b.b, a.a - b.a);
 
-	public static explicit operator uint(Color color) 
+	public static explicit operator uint(Color color)
 	{
 		uint result = 0;
 
@@ -36,7 +36,7 @@ public struct Color
 		return result;
 	}
 
-	public static explicit operator Color(uint color) 
+	public static explicit operator Color(uint color)
 	{
 		Color result = new();
 

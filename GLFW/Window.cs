@@ -63,9 +63,9 @@ public sealed class Window : IDisposable
 	private readonly FramebufferSizeCallback framebufferSizeCallback;
 	public event FramebufferSizeEventHandler? OnFramebufferSize;
 
-	public string Title 
+	public string Title
 	{
-		set 
+		set
 		{
 			glfwSetWindowTitle(this, value);
 
@@ -73,15 +73,15 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public nint UserPointer 
+	public nint UserPointer
 	{
-		set 
+		set
 		{
 			glfwSetWindowUserPointer(this, value);
 
 			[DllImport(GLFW_LIB)] static extern void glfwSetWindowUserPointer(nint window, nint pointer);
 		}
-		get 
+		get
 		{
 			return glfwGetWindowUserPointer(this);
 
@@ -89,15 +89,15 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public bool ShouldClose 
+	public bool ShouldClose
 	{
-		set 
+		set
 		{
 			glfwSetWindowShouldClose(this, value);
 
 			[DllImport(GLFW_LIB)] static extern void glfwSetWindowShouldClose(nint window, bool shouldClose);
 		}
-		get 
+		get
 		{
 			return glfwWindowShouldClose(this);
 
@@ -105,15 +105,15 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public float Opacity 
+	public float Opacity
 	{
-		set 
+		set
 		{
 			glfwSetWindowOpacity(this, value);
 
 			[DllImport(GLFW_LIB)] static extern void glfwSetWindowOpacity(nint window, float opacity);
 		}
-		get 
+		get
 		{
 			return glfwGetWindowOpacity(this);
 
@@ -121,16 +121,16 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public (int, int) Position 
+	public (int, int) Position
 	{
-		set 
+		set
 		{
 			(int x, int y) = value;
 			glfwSetWindowPos(this, x, y);
 
 			[DllImport(GLFW_LIB)] static extern void glfwSetWindowPos(nint window, int x, int y);
 		}
-		get 
+		get
 		{
 			glfwGetWindowPos(this, out int x, out int y);
 			return (x, y);
@@ -139,16 +139,16 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public (int, int) Size 
+	public (int, int) Size
 	{
-		set 
+		set
 		{
 			(int width, int height) = value;
 			glfwSetWindowSize(this, width, height);
 
 			[DllImport(GLFW_LIB)] static extern void glfwSetWindowSize(nint window, int width, int height);
 		}
-		get 
+		get
 		{
 			glfwGetWindowSize(this, out int width, out int height);
 			return (width, height);
@@ -157,16 +157,16 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public (double, double) CursorPosition 
+	public (double, double) CursorPosition
 	{
-		set 
+		set
 		{
 			(double x, double y) = value;
 			glfwSetCursorPos(this, x, y);
 
 			[DllImport(GLFW_LIB)] static extern void glfwSetCursorPos(nint window, double x, double y);
 		}
-		get 
+		get
 		{
 			glfwGetCursorPos(this, out double x, out double y);
 			return (x, y);
@@ -175,9 +175,9 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public (int, int) FramebufferSize 
+	public (int, int) FramebufferSize
 	{
-		get 
+		get
 		{
 			glfwGetFramebufferSize(this, out int width, out int height);
 			return (width, height);
@@ -186,9 +186,9 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public (float, float) ContentScale 
+	public (float, float) ContentScale
 	{
-		get 
+		get
 		{
 			glfwGetWindowContentScale(this, out float x, out float y);
 			return (x, y);
@@ -197,15 +197,15 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public unsafe string ClipboardText 
+	public unsafe string ClipboardText
 	{
-		set 
+		set
 		{
 			glfwSetClipboardString(this, value);
 
 			[DllImport(GLFW_LIB)] static extern void glfwSetClipboardString(nint window, string text);
 		}
-		get 
+		get
 		{
 			return new(glfwGetClipboardString(this));
 
@@ -213,9 +213,9 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public Image Icon 
+	public Image Icon
 	{
-		set 
+		set
 		{
 			glfwSetWindowIcon(this, 1, value);
 
@@ -223,9 +223,9 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public Cursor Cursor 
+	public Cursor Cursor
 	{
-		set 
+		set
 		{
 			glfwSetCursor(this, value);
 
@@ -233,9 +233,9 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public Monitor Monitor 
+	public Monitor Monitor
 	{
-		get 
+		get
 		{
 			return glfwGetWindowMonitor(this);
 
@@ -243,98 +243,98 @@ public sealed class Window : IDisposable
 		}
 	}
 
-	public void SetMonitor(Monitor monitor, int x, int y, int width, int height, int refreshRate) 
+	public void SetMonitor(Monitor monitor, int x, int y, int width, int height, int refreshRate)
 	{
 		glfwSetWindowMonitor(this, monitor, x, y, width, height, refreshRate);
 
 		[DllImport(GLFW_LIB)] static extern void glfwSetWindowMonitor(nint window, Monitor monitor, int x, int y, int width, int height, int refreshRate);
 	}
 
-	public bool GetKey(KeyCode key) 
+	public bool GetKey(KeyCode key)
 	{
 		return glfwGetKey(this, key);
 
 		[DllImport(GLFW_LIB)] static extern bool glfwGetKey(nint window, KeyCode key);
 	}
 
-	public bool GetMouseButton(KeyCode button) 
+	public bool GetMouseButton(KeyCode button)
 	{
 		return glfwGetKey(this, button);
 
 		[DllImport(GLFW_LIB)] static extern bool glfwGetKey(nint window, KeyCode button);
 	}
 
-	public void SetInputMode(InputMode mode, int value) 
+	public void SetInputMode(InputMode mode, int value)
 	{
 		glfwSetInputMode(this, mode, value);
 
 		[DllImport(GLFW_LIB)] static extern void glfwSetInputMode(nint window, InputMode mode, int value);
 	}
 
-	public int GetInputMode(InputMode mode) 
+	public int GetInputMode(InputMode mode)
 	{
 		return glfwGetInputMode(this, mode);
 
 		[DllImport(GLFW_LIB)] static extern int glfwGetInputMode(nint window, InputMode mode);
 	}
 
-	public void SwapBuffers() 
+	public void SwapBuffers()
 	{
 		glfwSwapBuffers(this);
 
 		[DllImport(GLFW_LIB)] static extern void glfwSwapBuffers(nint window);
 	}
 
-	public void MakeCurrentContext() 
+	public void MakeCurrentContext()
 	{
 		glfwMakeContextCurrent(this);
 
 		[DllImport(GLFW_LIB)] static extern void glfwMakeContextCurrent(nint window);
 	}
 
-	public void Iconify() 
+	public void Iconify()
 	{
 		glfwIconifyWindow(this);
 
 		[DllImport(GLFW_LIB)] static extern void glfwIconifyWindow(nint window);
 	}
 
-	public void Restore() 
+	public void Restore()
 	{
 		glfwRestoreWindow(this);
 
 		[DllImport(GLFW_LIB)] static extern void glfwRestoreWindow(nint window);
 	}
 
-	public void Maximize() 
+	public void Maximize()
 	{
 		glfwMaximizeWindow(this);
 
 		[DllImport(GLFW_LIB)] static extern void glfwMaximizeWindow(nint window);
 	}
 
-	public void Show() 
+	public void Show()
 	{
 		glfwShowWindow(this);
 
 		[DllImport(GLFW_LIB)] static extern void glfwShowWindow(nint window);
 	}
 
-	public void Hide() 
+	public void Hide()
 	{
 		glfwHideWindow(this);
 
 		[DllImport(GLFW_LIB)] static extern void glfwHideWindow(nint window);
 	}
 
-	public void Focus() 
+	public void Focus()
 	{
 		glfwFocusWindow(this);
 
 		[DllImport(GLFW_LIB)] static extern void glfwFocusWindow(nint window);
 	}
 
-	public void RequestAttention() 
+	public void RequestAttention()
 	{
 		glfwRequestWindowAttention(this);
 
@@ -342,28 +342,28 @@ public sealed class Window : IDisposable
 	}
 
 
-	public static void ResetHints() 
+	public static void ResetHints()
 	{
 		glfwDefaultWindowHints();
 
 		[DllImport(GLFW_LIB)] static extern void glfwDefaultWindowHints();
 	}
 
-	public static void SetHint(Hint hint, int value) 
+	public static void SetHint(Hint hint, int value)
 	{
 		glfwWindowHint(hint, value);
 
 		[DllImport(GLFW_LIB)] static extern void glfwWindowHint(Hint hint, int value);
 	}
 
-	public static void SetHint(Hint hint, string value) 
+	public static void SetHint(Hint hint, string value)
 	{
 		glfwWindowHintString(hint, value);
 
 		[DllImport(GLFW_LIB)] static extern void glfwWindowHintString(Hint hint, string value);
 	}
 
-	public void Dispose() 
+	public void Dispose()
 	{
 		glfwSetKeyCallback(this, null);
 		glfwSetCharCallback(this, null);
@@ -387,16 +387,16 @@ public sealed class Window : IDisposable
 		[DllImport(GLFW_LIB)] static extern void glfwDestroyWindow(nint window);
 	}
 
-	public static bool operator == (Window a, Window b) => a.handle == b.handle;
-	public static bool operator != (Window a, Window b) => a.handle != b.handle;
+	public static bool operator ==(Window a, Window b) => a.handle == b.handle;
+	public static bool operator !=(Window a, Window b) => a.handle != b.handle;
 	public override bool Equals(object? other) => (other is Window x) ? x.handle == handle : false;
 
-	public static implicit operator nint (Window x) => x.handle;
+	public static implicit operator nint(Window x) => x.handle;
 
 	public override string ToString() => handle.ToString();
 	public override int GetHashCode() => handle.GetHashCode();
 
-	public unsafe Window(int width, int height, string title = "Managed GLFW Window", Monitor? monitor = null, Window? share = null) 
+	public unsafe Window(int width, int height, string title = "Managed GLFW Window", Monitor? monitor = null, Window? share = null)
 	{
 		handle = glfwCreateWindow(
 			width,
@@ -450,13 +450,13 @@ public sealed class Window : IDisposable
 	[DllImport(GLFW_LIB)] static extern void glfwSetCursorEnterCallback(nint window, CursorEnterCallback? callback);
 	[DllImport(GLFW_LIB)] static extern void glfwSetScrollCallback(nint window, ScrollCallback? callback);
 	[DllImport(GLFW_LIB)] static extern void glfwSetDropCallback(nint window, DropCallback? callback);
-	[DllImport(GLFW_LIB)] static extern	void glfwSetWindowPosCallback(nint window, PositionCallback? callback);
-	[DllImport(GLFW_LIB)] static extern	void glfwSetWindowSizeCallback(nint window, SizeCallback? callback);
-	[DllImport(GLFW_LIB)] static extern	void glfwSetWindowCloseCallback(nint window, CloseCallback? callback);
-	[DllImport(GLFW_LIB)] static extern	void glfwSetWindowRefreshCallback(nint window, RefreshCallback? callback);
-	[DllImport(GLFW_LIB)] static extern	void glfwSetWindowFocusCallback(nint window, FocusCallback? callback);
-	[DllImport(GLFW_LIB)] static extern	void glfwSetWindowIconifyCallback(nint window, IconifyCallback? callback);
-	[DllImport(GLFW_LIB)] static extern	void glfwSetWindowMaximizeCallback(nint window, MaximizeCallback? callback);
-	[DllImport(GLFW_LIB)] static extern	void glfwSetWindowContentScaleCallback(nint window, ContentScaleCallback? callback);
-	[DllImport(GLFW_LIB)] static extern	void glfwSetFramebufferSizeCallback(nint window, FramebufferSizeCallback? callback);
+	[DllImport(GLFW_LIB)] static extern void glfwSetWindowPosCallback(nint window, PositionCallback? callback);
+	[DllImport(GLFW_LIB)] static extern void glfwSetWindowSizeCallback(nint window, SizeCallback? callback);
+	[DllImport(GLFW_LIB)] static extern void glfwSetWindowCloseCallback(nint window, CloseCallback? callback);
+	[DllImport(GLFW_LIB)] static extern void glfwSetWindowRefreshCallback(nint window, RefreshCallback? callback);
+	[DllImport(GLFW_LIB)] static extern void glfwSetWindowFocusCallback(nint window, FocusCallback? callback);
+	[DllImport(GLFW_LIB)] static extern void glfwSetWindowIconifyCallback(nint window, IconifyCallback? callback);
+	[DllImport(GLFW_LIB)] static extern void glfwSetWindowMaximizeCallback(nint window, MaximizeCallback? callback);
+	[DllImport(GLFW_LIB)] static extern void glfwSetWindowContentScaleCallback(nint window, ContentScaleCallback? callback);
+	[DllImport(GLFW_LIB)] static extern void glfwSetFramebufferSizeCallback(nint window, FramebufferSizeCallback? callback);
 }

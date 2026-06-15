@@ -4,11 +4,11 @@ using static GLFW.Constants;
 
 namespace GLFW;
 
-public static class Input 
+public static class Input
 {
-	public static bool IsRawMouseMotionSupported 
+	public static bool IsRawMouseMotionSupported
 	{
-		get 
+		get
 		{
 			return glfwRawMouseMotionSupported();
 
@@ -16,18 +16,18 @@ public static class Input
 		}
 	}
 
-	public static ulong TimerValue 
+	public static ulong TimerValue
 	{
-		get 
+		get
 		{
 			return glfwGetTimerValue();
 
 			[DllImport(GLFW_LIB)] static extern ulong glfwGetTimerValue();
 		}
 	}
-	public static ulong TimerFrequency 
+	public static ulong TimerFrequency
 	{
-		get 
+		get
 		{
 			return glfwGetTimerFrequency();
 
@@ -35,15 +35,15 @@ public static class Input
 		}
 	}
 
-	public static double Time 
+	public static double Time
 	{
-		set 
+		set
 		{
 			glfwSetTime(value);
 
 			[DllImport(GLFW_LIB)] static extern void glfwSetTime(double time);
 		}
-		get 
+		get
 		{
 			return glfwGetTime();
 
@@ -51,19 +51,19 @@ public static class Input
 		}
 	}
 
-	public static unsafe string GetJoystickName(int jid) 
+	public static unsafe string GetJoystickName(int jid)
 	{
 		return new string(glfwGetJoystickName(jid));
 
 		[DllImport(GLFW_LIB)] static extern sbyte* glfwGetJoystickName(int jid);
 	}
-	public static unsafe string GetJoystickGUID(int jid) 
+	public static unsafe string GetJoystickGUID(int jid)
 	{
 		return new string(glfwGetJoystickGUID(jid));
 
 		[DllImport(GLFW_LIB)] static extern sbyte* glfwGetJoystickGUID(int jid);
 	}
-	public static unsafe string GetGamepadName(int jid) 
+	public static unsafe string GetGamepadName(int jid)
 	{
 		return new string(glfwGetGamepadName(jid));
 
@@ -100,7 +100,7 @@ public static class Input
 	[DllImport(GLFW_LIB, EntryPoint = "glfwGetKeyScancode")]
 	public static extern int GetScancode(this KeyCode key);
 
-	public static unsafe string GetKeyName(KeyCode key, int scancode) 
+	public static unsafe string GetKeyName(KeyCode key, int scancode)
 	{
 		return new string(glfwGetKeyName(key, scancode));
 
